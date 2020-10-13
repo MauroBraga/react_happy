@@ -1,4 +1,5 @@
 yarn typeorm migration:create -n create_orphanages
+yarn typeorm migrations:create -n create_imagens
 
 yarn typeorm migration:run
 
