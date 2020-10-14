@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
 import orphanagesView from "../views/orphanages_views"
-import { getRepository, Index } from 'typeorm'
+import { getRepository } from 'typeorm'
 import Orphanage from '../model/Orphanage'
 import * as yup from 'yup'
 
@@ -11,7 +11,9 @@ export default {
         
         const orphanagesRepository = getRepository(Orphanage);
 
-        const  orphanage = await orphanagesRepository.findOneOrFail(id);
+        const  orphanage = await orphanagesRepository.findOneOrFail(id, {
+            relations: ['images']
+        });
 
         return  response.json(orphanagesView.render(orphanage))
     },
